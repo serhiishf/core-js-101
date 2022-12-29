@@ -271,9 +271,7 @@ function getSecondItems(arr) {
  */
 function propagateItemsByPositionIndex(arr) {
   return arr.reduce(
-    (accum, item, index) =>
-      accum.concat(Array.from({ length: index + 1 }, () => item)),
-    []
+    (accum, item, index) => accum.concat(Array.from({ length: index + 1 }, () => item)), [],
   );
 }
 
@@ -472,7 +470,7 @@ function getIdentityMatrix(/* n */) {
 function getIntervalArray(start, end, step = 1) {
   return Array.from(
     { length: (end - start) / step + 1 },
-    (_, i) => start + i * step
+    (_, i) => start + i * step,
   );
 }
 
