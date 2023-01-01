@@ -187,7 +187,6 @@ function findFirstSingleChar(str) {
     }
   }
   return null;
-  // throw new Error('Not implemented');
 }
 
 /**
@@ -212,8 +211,30 @@ function findFirstSingleChar(str) {
  *   5, 3, true, true   => '[3, 5]'
  *
  */
-function getIntervalString(/* a, b, isStartIncluded, isEndIncluded */) {
-  throw new Error('Not implemented');
+function getIntervalString(a, b, isStartIncluded, isEndIncluded) {
+  let trueStart = isStartIncluded;
+  let trueEnd = isEndIncluded;
+  let smaller = a;
+  let bigger = b;
+  if (a > b) {
+    trueStart = isEndIncluded;
+    trueEnd = isStartIncluded;
+    smaller = b;
+    bigger = a;
+  }
+  let result = '';
+  if (trueStart) {
+    result += '[';
+  } else {
+    result += '(';
+  }
+  result += `${smaller}, ${bigger}`;
+  if (trueEnd) {
+    result += ']';
+  } else {
+    result += ')';
+  }
+  return result;
 }
 
 /**
@@ -228,8 +249,8 @@ function getIntervalString(/* a, b, isStartIncluded, isEndIncluded */) {
  * 'rotator' => 'rotator'
  * 'noon' => 'noon'
  */
-function reverseString(/* str */) {
-  throw new Error('Not implemented');
+function reverseString(str) {
+  return str.split('').reverse().join('');
 }
 
 /**
