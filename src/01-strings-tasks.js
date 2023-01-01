@@ -199,8 +199,26 @@ function extractEmails(str) {
  *             '└──────────┘\n'
  *
  */
-function getRectangleString(/* width, height */) {
-  throw new Error('Not implemented');
+function getRectangleString(width, height) {
+  const topLeft = '┌';
+  const topRight = '┐';
+  const bottomLeft = '└';
+  const bottomRight = '┘';
+  const vertical = '│';
+  const horizontal = '─';
+  const end = '\n';
+  const space = ' ';
+  let result = '';
+  for (let i = 0; i < height; i += 1) {
+    if (i === 0) {
+      result += topLeft + horizontal.repeat(width - 2) + topRight + end;
+    } else if (i === height - 1) {
+      result += bottomLeft + horizontal.repeat(width - 2) + bottomRight + end;
+    } else {
+      result += vertical + space.repeat(width - 2) + vertical + end;
+    }
+  }
+  return result;
 }
 
 /**
@@ -219,8 +237,23 @@ function getRectangleString(/* width, height */) {
  *    => 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm'
  *
  */
-function encodeToRot13(/* str */) {
-  throw new Error('Not implemented');
+function encodeToRot13(str) {
+  const input = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+  const output = 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm';
+  let result = '';
+  for (let i = 0; i < str.length; i += 1) {
+    if (str[i] === '?') {
+      result += str[i];
+    } else {
+      const indexSym = input.search(str[i]);
+      if (indexSym !== -1) {
+        result += output[indexSym];
+      } else {
+        result += str[i];
+      }
+    }
+  }
+  return result;
 }
 
 /**
@@ -270,8 +303,11 @@ function isString(value) {
  *   'Q♠' => 50
  *   'K♠' => 51
  */
-function getCardId(/* value */) {
-  throw new Error('Not implemented');
+function getCardId(value) {
+  const reference = ['A♣', '2♣', '3♣', '4♣', '5♣', '6♣', '7♣', '8♣', '9♣', '10♣', 'J♣', 'Q♣', 'K♣', 'A♦', '2♦', '3♦', '4♦', '5♦', '6♦', '7♦', '8♦', '9♦', '10♦', 'J♦', 'Q♦', 'K♦', 'A♥', '2♥', '3♥', '4♥', '5♥', '6♥', '7♥', '8♥', '9♥', '10♥', 'J♥', 'Q♥', 'K♥',
+    'A♠', '2♠', '3♠', '4♠', '5♠', '6♠', '7♠', '8♠', '9♠', '10♠', 'J♠', 'Q♠', 'K♠'];
+  return reference.indexOf(value);
+  // throw new Error('Not implemented');
 }
 
 module.exports = {

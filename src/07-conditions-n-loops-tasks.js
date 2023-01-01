@@ -324,8 +324,14 @@ function isCreditCardNumber(ccn) {
  *   10000 ( 1+0+0+0+0 = 1 ) => 1
  *   165536 (1+6+5+5+3+6 = 26,  2+6 = 8) => 8
  */
-function getDigitalRoot(/* num */) {
-  throw new Error('Not implemented');
+function getDigitalRoot(num) {
+  const numStr = num.toString();
+  const numArr = numStr.split('').map((elem) => Number(elem));
+  const result = numArr.reduce((accum, current) => accum + current);
+  if (result < 9) {
+    return result;
+  }
+  return getDigitalRoot(result);
 }
 
 /**
@@ -349,8 +355,31 @@ function getDigitalRoot(/* num */) {
  *   '{)' = false
  *   '{[(<{[]}>)]}' = true
  */
-function isBracketsBalanced(/* str */) {
-  throw new Error('Not implemented');
+function isBracketsBalanced(str) {
+  const openArr = [];
+  for (let i = 0; i < str.length; i += 1) {
+    if (str[i] === '[' || str[i] === '(' || str[i] === '{' || str[i] === '<') {
+      openArr.push(str[i]);
+    } else {
+      const lastOpen = openArr[openArr.length - 1];
+      if (lastOpen === '[' && str[i] === ']') {
+        openArr.pop();
+      } else if (lastOpen === '{' && str[i] === '}') {
+        openArr.pop();
+      } else if (lastOpen === '(' && str[i] === ')') {
+        openArr.pop();
+      } else if (lastOpen === '<' && str[i] === '>') {
+        openArr.pop();
+      } else {
+        return false;
+      }
+    }
+  }
+  if (openArr.length === 0) {
+    return true;
+  }
+  return false;
+  // throw new Error('Not implemented');
 }
 
 /**
@@ -373,8 +402,8 @@ function isBracketsBalanced(/* str */) {
  *    365, 4  => '11231'
  *    365, 10 => '365'
  */
-function toNaryString(/* num, n */) {
-  throw new Error('Not implemented');
+function toNaryString(num, n) {
+  return num.toString(n);
 }
 
 /**
