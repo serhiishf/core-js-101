@@ -502,8 +502,43 @@ function getMatrixProduct(m1, m2) {
  *    [    ,   ,    ]]
  *
  */
-function evaluateTicTacToePosition(/* position */) {
-  throw new Error('Not implemented');
+function evaluateTicTacToePosition(position) {
+  let result;
+  position.forEach((row, rowIndex) => {
+    row.forEach((cell, cellIndex) => {
+      if (cell === 'X' || cell === '0') {
+        if (cellIndex === 0 && rowIndex === 0) {
+          if (cell === position[rowIndex + 1][cellIndex + 1]) {
+            if (cell === position[rowIndex + 2][cellIndex + 2]) {
+              result = cell;
+            }
+          }
+        }
+        if (cellIndex === row.length - 1 && rowIndex === 0) {
+          if (cell === position[rowIndex + 1][cellIndex - 1]) {
+            if (cell === position[rowIndex + 2][cellIndex - 2]) {
+              result = cell;
+            }
+          }
+        }
+        if (cellIndex === 0) {
+          if (cell === row[cellIndex + 1]) {
+            if (cell === row[cellIndex + 2]) {
+              result = cell;
+            }
+          }
+        }
+        if (rowIndex === 0) {
+          if (cell === position[rowIndex + 1][cellIndex]) {
+            if (cell === position[rowIndex + 2][cellIndex]) {
+              result = cell;
+            }
+          }
+        }
+      }
+    });
+  });
+  return result;
 }
 
 module.exports = {
