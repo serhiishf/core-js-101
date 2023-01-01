@@ -379,7 +379,6 @@ function isBracketsBalanced(str) {
     return true;
   }
   return false;
-  // throw new Error('Not implemented');
 }
 
 /**
@@ -419,6 +418,23 @@ function toNaryString(num, n) {
  *   ['/web/favicon.ico', '/web-scripts/dump', '/verbalizer/logs'] => '/'
  */
 function getCommonDirectoryPath(/* pathes */) {
+/*   let result = '';
+  for (let i = 0; i < pathes.length; i += 1) {
+    const currentSymbol = pathes[0][i];
+    let flag = true;
+    pathes.forEach((elem) => {
+      if (elem[i] !== currentSymbol) {
+        flag = false;
+      }
+    });
+    if (flag) {
+      result += currentSymbol;
+    } else {
+      return result;
+    }
+  }
+  return result;
+ */
   throw new Error('Not implemented');
 }
 
@@ -440,8 +456,20 @@ function getCommonDirectoryPath(/* pathes */) {
  *                         [ 6 ]]
  *
  */
-function getMatrixProduct(/* m1, m2 */) {
-  throw new Error('Not implemented');
+function getMatrixProduct(m1, m2) {
+  const result = [];
+  m1.forEach((row) => {
+    const subArr = [];
+    for (let j = 0; j < m1.length; j += 1) {
+      let subResult = 0;
+      for (let i = 0; i < row.length; i += 1) {
+        subResult += row[i] * m2[i][j];
+      }
+      subArr.push(subResult);
+    }
+    result.push(subArr);
+  });
+  return result;
 }
 
 /**
